@@ -1,0 +1,28 @@
+spotify_mys:
+  alias: 'Spotify Mys'
+  sequence:
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.spotify
+        media_content_type: playlist
+        media_content_id: 'spotify:user:rallanand:playlist:4d7fRkPtsbkAw8MMgsgtPs'
+
+all_groups_turn_off:
+  alias: 'Alla grupper av'
+  sequence:
+    - service: light.turn_off
+      data_template:
+        entity_id: 'group.vardagsrum'
+    - service: switch.turn_off
+      data_template:
+        entity_id: 'group.vardagsrum'
+
+all_groups_turn_on:
+  alias: 'Alla grupper på'
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: 'group.vardagsrum'
+    - service: switch.turn_on
+      data_template:
+        entity_id: 'group.vardagsrum'

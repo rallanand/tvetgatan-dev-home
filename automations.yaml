@@ -1,0 +1,225 @@
+- id: ra_id001
+  alias: Turn on the lights from motion if sun is low
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.motion_vardagsrum
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        below: 2.0
+      - condition: time
+        after: '05:00:00'
+        before: '00:00:00'
+      - condition: state
+        entity_id: sensor.ikea_remote
+        state: 'unknown'
+        for:
+          minutes: 5
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_on
+
+#  action:
+#  - service: light.turn_on
+#  - service: switch.turn_on
+#    entity_id: switch.julbelysning
+
+#
+- id: ra_id002
+  alias: Turn off the lights from motion evening
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.motion_vardagsrum
+    from: 'True'
+    to: 'False'
+    for:
+      minutes: 60
+  condition:
+  - condition: time
+    after: '16:00:00'
+    before: '23:59:00'
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_off
+#
+- id: ra_id003
+  alias: Turn off the lights from motion morning
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.motion_vardagsrum
+    from: 'True'
+    to: 'False'
+    for:
+      minutes: 20
+  condition:
+  - condition: time
+    after: '06:00:00'
+    before: '15:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_off
+
+#- id: ra_id004
+#  alias: 'Mys Spotifytrigger'
+#  trigger:
+#  - platform: event
+#    event_type: call_service
+#    event_data:
+#      service_data:
+#        entity_id: [scene.mysljus]
+#      domain: scene
+#      service: turn_on
+#  action:
+#  - service: script.turn_on
+#    entity_id: script.spotify_mys
+#
+- id: ra_id005
+  alias: 'Turn on light when opening entre door'
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.main_door_sensor
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.all_lights
+        state: 'off'
+      - condition: state
+        entity_id: sensor.motion_vardagsrum
+        state: 'False'
+        for:
+          hours: 1
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_on
+
+#
+- id: ra_id006
+  alias: Turn off the lights from motion night
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.motion_vardagsrum
+    from: 'True'
+    to: 'False'
+    for:
+      minutes: 60
+  condition:
+  - condition: time
+    after: '00:00:01'
+    before: '05:59:00'
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_off
+
+- id: ra_id007
+  alias: Remote - Turn Off lights
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.ikea_remote
+    from: 'unknown'
+    to: 'on_off'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: 'group.all_switches'
+      state: 'on'
+    - condition: state
+      entity_id: 'light.lampa_soffa'
+      state: 'on'
+    - condition: state
+      entity_id: 'light.lampa_matbord'
+      state: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_off
+
+- id: ra_id008
+  alias: Remote - Turn On lights
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.ikea_remote
+    from: 'unknown'
+    to: 'on_off'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: 'group.all_switches'
+      state: 'off'
+    - condition: state
+      entity_id: 'light.lampa_soffa'
+      state: 'off'
+    - condition: state
+      entity_id: 'light.lampa_matbord'
+      state: 'off'
+  action:
+    service: script.turn_on
+    entity_id: script.all_groups_turn_on
+
+- id: ra_id009
+  alias: 'Increase brightness of lamp from dimmer'
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.ikea_remote
+    from: 'unknown'
+    to: 'dim_up'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.lampa_matbord
+      brightness: >
+        {% set bri = states.light.lampa_matbord.attributes.brightness | int %}
+        {{ [bri+60, 254] | min }}
+  - service: light.turn_on
+    data_template:
+      entity_id: light.lampa_soffa
+      brightness: >
+        {% set bri = states.light.lampa_soffa.attributes.brightness | int %}
+        {{ [bri+60, 254] | min }}
+
+- id: ra_id010
+  alias: 'Decrease brightness of lamp from dimmer'
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.ikea_remote
+    from: 'unknown'
+    to: 'dim_down'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.lampa_matbord
+      brightness: >
+        {% set bri = states.light.lampa_matbord.attributes.brightness | int %}
+        {{ [bri-60, 25] | max }}
+  - service: light.turn_on
+    data_template:
+      entity_id: light.lampa_soffa
+      brightness: >
+        {% set bri = states.light.lampa_soffa.attributes.brightness | int %}
+        {{ [bri-60, 25] | max }}

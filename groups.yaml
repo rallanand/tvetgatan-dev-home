@@ -1,0 +1,11 @@
+vardagsrum:
+  name: Vardagsrum
+  entities:
+    - light.lampa_soffa
+    - light.lampa_matbord
+    - switch.light_tv
+#julbelysning:
+#  name: Julbelysning
+#  entities:
+#    - switch.julbelysning_1
+#    - switch.julbelysning_2
