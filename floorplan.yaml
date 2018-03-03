@@ -32,6 +32,6 @@ groups:
        - switch.light_tv
     states:
       - state: 'on'
-        class: 'light-on
+        class: 'light-on'
       - state: 'off'
         class: 'light-off'
