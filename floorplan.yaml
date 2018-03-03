@@ -11,6 +11,7 @@ stylesheet: /home/homeassistant/.homeassistant/www/custom_ui/floorplan/floorplan
 last_motion_entity: sensor.template_last_motion
 last_motion_class: last-motion
 
+warnings:
 groups:
 
   - name: Sensors
