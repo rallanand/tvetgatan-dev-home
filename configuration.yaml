@@ -193,6 +193,14 @@ panel_iframe:
    icon: 'mdi:shuffle-variant'
    url: 'http://192.168.1.240:1880/'
 
+########## Floorplan ###########
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
 ########## SCENES ############
 # colortemp interval 154 - 500
 # Brightness 0 - 254
