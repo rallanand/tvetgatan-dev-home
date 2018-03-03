@@ -1,7 +1,6 @@
 name: Tvetgatan Floorplan
-image: /home/homeassistant/.homeassistant/www/custom_ui/floorplan/floorplan.svg
-stylesheet: /home/homeassistant/.homeassistant/www/custom_ui/floorplan/floorplan.css
-
+image: /local/custom_ui/floorplan/floorplan.svg
+stylesheet: /local/custom_ui/floorplan/floorplan.css
 # These options are optional
 # warnings:                  # enable warnings (to find out why things might ot be working correctly)
 # pan_zoom:                  # enable experimental panning / zooming
