@@ -38,3 +38,17 @@ groups:
     action:
       domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
       service: toggle
+
+  - name: Sensors
+          entities:
+             - sensor.temp_meter
+          text_template: '${entity.state ? entity.state : "unknown"}'
+          class_template: '
+            var temp = parseFloat(entity.state.replace("°", ""));
+            if (temp < 18)
+              return "temp-low";
+            else if (temp < 22)
+              return "temp-medium";
+            else
+              return "temp-high";
+            '
