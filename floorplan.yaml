@@ -53,17 +53,17 @@ groups:
       else
         return "temp-high";
       '
-    states:
-       - state: 'True'
-         class: 'motion-true'
-       - state: 'False'
-         class: 'motion-false'
-
-#  - name: Binary
-#    entities:
-#       - sensor.motion_vardagsrum
 #    states:
-#      - state: 'True'
-#        class: 'motion-true'
-#      - state: 'False'
-#        class: 'motion-false'
+#       - state: 'True'
+#         class: 'motion-true'
+#       - state: 'False'
+#         class: 'motion-false'
+
+  - name: Motion
+    entities:
+       - sensor.motion_vardagsrum
+    states:
+      - state: 'True'
+        class: 'motion-true'
+      - state: 'False'
+        class: 'motion-false'
