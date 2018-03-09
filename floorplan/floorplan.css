@@ -73,6 +73,16 @@ svg, svg * {
   stroke-opacity: 1 !important;
 }
 
+.motion-true {
+  fill: #ff9900 !important;
+  fill-opacity: 0.3 !important;
+}
+
+.motion-false {
+  fill: #ccccff !important;
+  fill-opacity: 0.3 !important;
+}
+
 /* Alarm Panel */
 
 .alarm-disarmed {
@@ -112,22 +122,17 @@ svg, svg * {
 
 /* Temperature sensor */
 
-.temp-very-low-background {
+.temp-low {
   fill: #d9edf7 !important;
   fill-opacity: 1 !important;
 }
 
-.temp-below-average-background {
-  fill: #dcefe8 !important;
-  fill-opacity: 1 !important;
-}
-
-.temp-average-background {
+.temp-medium{
   fill: #dff0d8 !important;
   fill-opacity: 1 !important;
 }
 
-.temp-very-high-background {
+.temp-high {
   fill: #f2dede !important;
   fill-opacity: 1 !important;
 }

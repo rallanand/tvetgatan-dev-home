@@ -52,3 +52,12 @@ groups:
       else
         return "temp-high";
       '
+
+  - name: Motion
+    entities:
+       - sensor.motion_vardagsrum
+    states:
+      - state: 'True'
+        class: 'motion-true'
+      - state: 'False'
+        class: 'motion-false'
