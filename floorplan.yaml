@@ -53,11 +53,6 @@ groups:
       else
         return "temp-high";
       '
-#    states:
-#       - state: 'True'
-#         class: 'motion-true'
-#       - state: 'False'
-#         class: 'motion-false'
 
   - name: Motion
     entities:
@@ -67,12 +62,12 @@ groups:
         class: 'motion-true'
       - state: 'False'
         class: 'motion-false'
-    state_transitions:
-      - name: On to off
-        from_state: 'True'
-        to_state: 'False'
-        duration: 10
-      - name: Off to On
-        from_state: 'False'
-        to_state: 'True'
-        duration: 10
+#    state_transitions:
+#      - name: On to off
+#        from_state: 'True'
+#        to_state: 'False'
+#        duration: 10
+#      - name: Off to On
+#        from_state: 'False'
+#        to_state: 'True'
+#        duration: 10
