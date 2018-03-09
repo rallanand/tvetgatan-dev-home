@@ -42,6 +42,7 @@ groups:
   - name: TempDisplay
     entities:
        - sensor.temp_meter
+       - sensor.motion_vardagsrum
     text_template: '${entity.state ? entity.state : "unknown"}'
     class_template: '
       var temp = parseFloat(entity.state.replace("°", ""));
@@ -52,12 +53,17 @@ groups:
       else
         return "temp-high";
       '
-
-  - name: Binary
-    entities:
-       - sensor.motion_vardagsrum
     states:
-      - state: 'True'
-        class: 'motion-true'
-      - state: 'False'
-        class: 'motion-false'
+       - state: 'True'
+         class: 'motion-true'
+       - state: 'False'
+         class: 'motion-false'
+
+#  - name: Binary
+#    entities:
+#       - sensor.motion_vardagsrum
+#    states:
+#      - state: 'True'
+#        class: 'motion-true'
+#      - state: 'False'
+#        class: 'motion-false'
