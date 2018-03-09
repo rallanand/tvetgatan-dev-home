@@ -121,7 +121,7 @@ svg, svg * {
 }
 
 /* Temperature sensor */
-
+/*
 .temp-low {
   fill: #d9edf7 !important;
   fill-opacity: 1 !important;
@@ -136,6 +136,7 @@ svg, svg * {
   fill: #f2dede !important;
   fill-opacity: 1 !important;
 }
+*/
 
 /* Media player */
 
