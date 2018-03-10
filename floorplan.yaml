@@ -43,7 +43,7 @@ groups:
     entities:
        - sensor.temp_meter
        - sensor.humidity_meter
-    text_template: '${entity.state ? entity.state : "unknown"}'
+    text_template: '${entity.state ? entity.state + "°": "unknown"}'
     class_template: '
       var temp = parseFloat(entity.state.replace("°", ""));
       if (temp < 18)
