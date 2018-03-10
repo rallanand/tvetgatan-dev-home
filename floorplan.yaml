@@ -76,11 +76,11 @@ groups:
        - sensor.humidity_meter
     text_template: '${entity.state ? entity.state + "%": "unknown"}'
     class_template: '
-      var temp = parseFloat(entity.state.replace("°", ""));
-      if (temp < 18)
-        return "temp-low";
-      else if (temp < 22)
-        return "temp-medium";
+      var hum = parseFloat(entity.state.replace("%", ""));
+      if (hum < 25)
+        return "hum-low";
+      else if (temp < 50)
+        return "hum-medium";
       else
-        return "temp-high";
+        return "hum-high";
       '
