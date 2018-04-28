@@ -106,6 +106,13 @@ homeassistant:
 sensor:
   - platform: yr
 
+####### SSL check sensor #############
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: !secret ssl_check_command
+
 ######### Zigbee Sensor Setup ###########
 
 ###Motion sensor##############
