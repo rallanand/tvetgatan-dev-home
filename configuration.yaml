@@ -22,8 +22,8 @@ script: !include scripts.yaml
 #  api_password: !secret r_http_password
 http:
   api_password: !secret r_http_password
-  ssl_certificate: !secret ssl_cert_dir
-  ssl_key: !secret ssl_key_dir
+#  ssl_certificate: !secret ssl_cert_dir
+#  ssl_key: !secret ssl_key_dir
 
 homeassistant:
   # Name of the location where Home Assistant is running
