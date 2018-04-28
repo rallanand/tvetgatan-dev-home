@@ -24,7 +24,6 @@ http:
   api_password: !secret r_http_password
   ssl_certificate: !secret ssl_cert_dir
   ssl_key: !secret ssl_key_dir
-  base_url: !secret base_url
 
 homeassistant:
   # Name of the location where Home Assistant is running
@@ -182,7 +181,7 @@ google_assistant:
   client_id: !secret g_client_id
   access_token: !secret g_access_token
   api_key: !secret g_api_key
-  base_url: !secret base_url
+  base_url: !secret ssl_base_url
   exposed_domains:
     - switch
     - light
