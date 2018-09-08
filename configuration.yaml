@@ -237,3 +237,6 @@ scene:
         state: on
         brightness: 254
         color_temp: 170
+
+########## HomeKit ############
+homekit:
