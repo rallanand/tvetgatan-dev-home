@@ -53,18 +53,18 @@ homeassistant:
     light.lampa_soffa:
         google_assistant_name: "Coach light"
     #SENSORS
-    sensor.temp_vardagsrum:
-        hidden: true
-    sensor.humidity_vardagsrum:
-        hidden: true
-    sensor.humidity_meter:
-        homebridge_sensor_type: "humidity"
-    sensor.motion_vardagsrum:
-        friendly_name: "Motion Vardagsrum"
-        device_class: motion
-    sensor.main_door_open:
-        friendly_name: "Entrance door"
-        device_class: opening
+#    sensor.temp_vardagsrum:
+#        hidden: true
+#    sensor.humidity_vardagsrum:
+#        hidden: true
+#    sensor.humidity_meter:
+#        homebridge_sensor_type: "humidity"
+#    sensor.motion_vardagsrum:
+#        friendly_name: "Motion Vardagsrum"
+#        device_class: motion
+#    sensor.main_door_open:
+#        friendly_name: "Entrance door"
+#        device_class: opening
     #SWITCHES
 #    switch.julbelysning_1:
 #       device_class: light
@@ -118,48 +118,48 @@ sensor:
 ######### Zigbee Sensor Setup ###########
 
 ###Motion sensor##############
-  - platform: rest
-    resource: http://192.168.1.136:80/api/homeassistant/sensors/2
-    value_template: '{{ value_json.state.presence }}'
-    name: motion_vardagsrum
-    scan_interval: "00:02:00"
+#  - platform: rest
+#    resource: http://192.168.1.136:80/api/homeassistant/sensors/2
+#    value_template: '{{ value_json.state.presence }}'
+#    name: motion_vardagsrum
+#    scan_interval: "00:02:00"
 
 ### Temp sensor##############
-  - platform: rest
-    resource: http://192.168.1.136:80/api/homeassistant/sensors/3
-    value_template: '{{ value_json.state.temperature }}'
-    name: temp_vardagsrum
-    scan_interval: "00:02:00"
+#  - platform: rest
+#    resource: http://192.168.1.136:80/api/homeassistant/sensors/3
+#    value_template: '{{ value_json.state.temperature }}'
+#    name: temp_vardagsrum
+#    scan_interval: "00:02:00"
 # -27315, 2147483647
 
-  - platform: template
-    sensors:
-      temp_meter:
-        value_template: "{{ (states.sensor.temp_vardagsrum.state | float / 100)|round(1)  }}"
-        friendly_name: "Temperature Meter"
-        unit_of_measurement: '°C'
+#  - platform: template
+#    sensors:
+#      temp_meter:
+#        value_template: "{{ (states.sensor.temp_vardagsrum.state | float / 100)|round(1)  }}"
+#        friendly_name: "Temperature Meter"
+#        unit_of_measurement: '°C'
 
 ##Humidity sensor##############
-  - platform: rest
-    resource: http://192.168.1.136:80/api/homeassistant/sensors/4
-    value_template: '{{ value_json.state.humidity }}'
-    name: humidity_vardagsrum
-    scan_interval: "00:02:00"
+#  - platform: rest
+#    resource: http://192.168.1.136:80/api/homeassistant/sensors/4
+#    value_template: '{{ value_json.state.humidity }}'
+#    name: humidity_vardagsrum
+#    scan_interval: "00:02:00"
 # 0, 10000
 
-  - platform: template
-    sensors:
-      humidity_meter:
-        value_template: "{{ (states.sensor.humidity_vardagsrum.state | float / 100)|round(1) }}"
-        friendly_name: "Humidity Meter"
-        unit_of_measurement: '%'
+#  - platform: template
+#    sensors:
+#      humidity_meter:
+#        value_template: "{{ (states.sensor.humidity_vardagsrum.state | float / 100)|round(1) }}"
+#        friendly_name: "Humidity Meter"
+#        unit_of_measurement: '%'
 
 ###Door Sensor##############
-  - platform: rest
-    resource: http://192.168.1.136:80/api/homeassistant/sensors/5
-    value_template: '{{ value_json.state.open }}'
-    name: main_door_open
-    scan_interval: "00:02:00"
+#  - platform: rest
+#    resource: http://192.168.1.136:80/api/homeassistant/sensors/5
+#    value_template: '{{ value_json.state.open }}'
+#    name: main_door_open
+#    scan_interval: "00:02:00"
 
 ########## ZIGBEE SETUP ##########
 #light:
