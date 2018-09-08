@@ -159,10 +159,12 @@ sensor:
     scan_interval: "00:02:00"
 
 ########## ZIGBEE SETUP ##########
-light:
-  platform: hue
-  host: 192.168.1.136
+#light:
+#  platform: hue
+#  host: 192.168.1.136
 
+deconz:
+  host: 192.168.1.136
 ########## CAMERA SETUP ##########
 camera:
   - platform: ffmpeg
