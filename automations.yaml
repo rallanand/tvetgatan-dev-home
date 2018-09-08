@@ -224,11 +224,11 @@
         {% set bri = states.light.lampa_soffa.attributes.brightness | int %}
         {{ [bri-60, 25] | max }}
 
-- id: ra_id011
-  alias: 'Start HomeKit'
-  trigger:
-  - platform: homeassistant
-    event: start
-  action:
-  - delay: 00:02  # Waits 2 minutes
-    service: homekit.start
+#- id: ra_id011
+#  alias: 'Start HomeKit'
+#  trigger:
+#  - platform: homeassistant
+#    event: start
+#  action:
+#  - delay: 00:02  # Waits 2 minutes
+#    service: homekit.start

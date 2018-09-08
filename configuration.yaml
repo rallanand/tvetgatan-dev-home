@@ -127,7 +127,6 @@ tellduslive:
 
 ########## HOMEKIT INIT ###########
 #homekit:
-#  auto_start: False
 
 ########## GOOGLE ASSISTANT ###########
 google_assistant:
