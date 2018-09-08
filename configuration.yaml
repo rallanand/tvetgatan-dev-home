@@ -126,7 +126,7 @@ camera:
 tellduslive:
 
 ########## HOMEKIT INIT ###########
-#homekit:
+homekit:
 
 ########## GOOGLE ASSISTANT ###########
 google_assistant:
