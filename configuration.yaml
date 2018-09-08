@@ -27,10 +27,7 @@ http:
   ssl_key: !secret ssl_key_dir
 
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Home
-#  auth_providers:
-#   - type: legacy_api_password
   latitude: !secret lat
   longitude: !secret long
   elevation: 2
@@ -115,6 +112,81 @@ sensor:
     scan_interval: 10800
     command: !secret ssl_check_command
 
+########## ZIGBEE SETUP ##########
+deconz:
+  host: 192.168.1.136
+########## CAMERA SETUP ##########
+camera:
+  - platform: ffmpeg
+    name: Vardagsrum
+    input: -rtsp_transport tcp -i rtsp://192.168.1.202/unicast
+    extra_arguments: -pred 1
+
+########## TELLDUS INIT ###########
+tellduslive:
+
+########## HOMEKIT INIT ###########
+#homekit:
+#  auto_start: False
+
+########## GOOGLE ASSISTANT ###########
+google_assistant:
+  project_id: !secret g_project_id
+  client_id: !secret g_client_id
+  access_token: !secret g_access_token
+  api_key: !secret g_api_key
+  base_url: !secret ssl_base_url
+  exposed_domains:
+    - switch
+    - light
+    - group
+
+########## SPOTIFY ###########
+media_player:
+  - platform: spotify
+    client_id: !secret s_client_id
+    client_secret: !secret s_client_secret
+
+########## Floorplan ###########
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+########## SCENES ############
+# colortemp interval 154 - 500
+# Brightness 0 - 254
+scene:
+  - name: Mysljus
+    entities:
+      light.lampa_matbord:
+        state: on
+        brightness: 127
+        color_temp: 400
+      light.lampa_soffa:
+        state: on
+        brightness: 127
+        color_temp: 400
+  - name: Dagsbelysning
+    entities:
+      light.lampa_matbord:
+        state: on
+        brightness: 254
+        color_temp: 170
+      light.lampa_soffa:
+        state: on
+        brightness: 254
+        color_temp: 170
+
+########## Node-Red ###########
+#panel_iframe:
+# nodered:
+#   title: 'Node-Red'
+#   icon: 'mdi:shuffle-variant'
+#   url: 'http://192.168.1.136:1880/'
+
 ######### Zigbee Sensor Setup ###########
 
 ###Motion sensor##############
@@ -160,83 +232,3 @@ sensor:
 #    value_template: '{{ value_json.state.open }}'
 #    name: main_door_open
 #    scan_interval: "00:02:00"
-
-########## ZIGBEE SETUP ##########
-#light:
-#  platform: hue
-#  host: 192.168.1.136
-
-deconz:
-  host: 192.168.1.136
-########## CAMERA SETUP ##########
-camera:
-  - platform: ffmpeg
-    name: Vardagsrum
-    input: -rtsp_transport tcp -i rtsp://192.168.1.202/unicast
-    extra_arguments: -pred 1
-
-########## TELLDUS INIT ###########
-tellduslive:
-#  update_interval: 5
-#  signal_repetitions: 3
-
-########## GOOGLE ASSISTANT ###########
-google_assistant:
-  project_id: !secret g_project_id
-  client_id: !secret g_client_id
-  access_token: !secret g_access_token
-  api_key: !secret g_api_key
-  base_url: !secret ssl_base_url
-  exposed_domains:
-    - switch
-    - light
-    - group
-
-########## SPOTIFY ###########
-media_player:
-  - platform: spotify
-    client_id: !secret s_client_id
-    client_secret: !secret s_client_secret
-
-########## Node-Red ###########
-panel_iframe:
- nodered:
-   title: 'Node-Red'
-   icon: 'mdi:shuffle-variant'
-   url: 'http://192.168.1.136:1880/'
-
-########## Floorplan ###########
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
-
-########## SCENES ############
-# colortemp interval 154 - 500
-# Brightness 0 - 254
-scene:
-  - name: Mysljus
-    entities:
-      light.lampa_matbord:
-        state: on
-        brightness: 127
-        color_temp: 400
-      light.lampa_soffa:
-        state: on
-        brightness: 127
-        color_temp: 400
-  - name: Dagsbelysning
-    entities:
-      light.lampa_matbord:
-        state: on
-        brightness: 254
-        color_temp: 170
-      light.lampa_soffa:
-        state: on
-        brightness: 254
-        color_temp: 170
-
-########## HomeKit ############
-homekit:
