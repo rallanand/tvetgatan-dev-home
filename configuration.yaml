@@ -28,6 +28,8 @@ http:
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
+  auth_providers:
+   - type: legacy_api_password
   latitude: !secret lat
   longitude: !secret long
   elevation: 2
@@ -174,7 +176,7 @@ camera:
 
 ########## TELLDUS INIT ###########
 tellduslive:
-  update_interval: 5
+#  update_interval: 5
 #  signal_repetitions: 3
 
 ########## GOOGLE ASSISTANT ###########
