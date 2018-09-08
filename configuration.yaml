@@ -20,16 +20,17 @@ script: !include scripts.yaml
 
 #http:
 #  api_password: !secret r_http_password
-http:
-  api_password: !secret r_http_password
-  ssl_certificate: !secret ssl_cert_dir
-  ssl_key: !secret ssl_key_dir
+
+#http:
+#  api_password: !secret r_http_password
+#  ssl_certificate: !secret ssl_cert_dir
+#  ssl_key: !secret ssl_key_dir
 
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
-  auth_providers:
-   - type: legacy_api_password
+#  auth_providers:
+#   - type: legacy_api_password
   latitude: !secret lat
   longitude: !secret long
   elevation: 2
