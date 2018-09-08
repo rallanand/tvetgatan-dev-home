@@ -116,14 +116,14 @@ sensor:
 
 ###Motion sensor##############
   - platform: rest
-    resource: http://192.168.1.240:80/api/homeassistant/sensors/2
+    resource: http://192.168.1.136:80/api/homeassistant/sensors/2
     value_template: '{{ value_json.state.presence }}'
     name: motion_vardagsrum
     scan_interval: "00:02:00"
 
 ### Temp sensor##############
   - platform: rest
-    resource: http://192.168.1.240:80/api/homeassistant/sensors/3
+    resource: http://192.168.1.136:80/api/homeassistant/sensors/3
     value_template: '{{ value_json.state.temperature }}'
     name: temp_vardagsrum
     scan_interval: "00:02:00"
@@ -138,7 +138,7 @@ sensor:
 
 ##Humidity sensor##############
   - platform: rest
-    resource: http://192.168.1.240:80/api/homeassistant/sensors/4
+    resource: http://192.168.1.136:80/api/homeassistant/sensors/4
     value_template: '{{ value_json.state.humidity }}'
     name: humidity_vardagsrum
     scan_interval: "00:02:00"
@@ -153,7 +153,7 @@ sensor:
 
 ###Door Sensor##############
   - platform: rest
-    resource: http://192.168.1.240:80/api/homeassistant/sensors/5
+    resource: http://192.168.1.136:80/api/homeassistant/sensors/5
     value_template: '{{ value_json.state.open }}'
     name: main_door_open
     scan_interval: "00:02:00"
@@ -161,7 +161,7 @@ sensor:
 ########## ZIGBEE SETUP ##########
 light:
   platform: hue
-  host: 192.168.1.240
+  host: 192.168.1.136
 
 ########## CAMERA SETUP ##########
 camera:
@@ -198,7 +198,7 @@ panel_iframe:
  nodered:
    title: 'Node-Red'
    icon: 'mdi:shuffle-variant'
-   url: 'http://192.168.1.240:1880/'
+   url: 'http://192.168.1.136:1880/'
 
 ########## Floorplan ###########
 panel_custom:
