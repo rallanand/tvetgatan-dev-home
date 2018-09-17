@@ -4,9 +4,9 @@
   hide_entity: true
   trigger:
   - platform: state
-    entity_id: sensor.motion_vardagsrum
-    from: 'False'
-    to: 'True'
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    from: 'off'
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -17,11 +17,6 @@
       - condition: time
         after: '05:00:00'
         before: '00:00:00'
-      - condition: state
-        entity_id: sensor.ikea_remote
-        state: 'unknown'
-        for:
-          minutes: 5
   action:
     service: script.turn_on
     entity_id: script.all_groups_turn_on
@@ -38,11 +33,11 @@
   hide_entity: true
   trigger:
   - platform: state
-    entity_id: sensor.motion_vardagsrum
-    from: 'True'
-    to: 'False'
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    from: 'on'
+    to: 'off'
     for:
-      minutes: 60
+      minutes: 30
   condition:
   - condition: time
     after: '16:00:00'
@@ -57,11 +52,11 @@
   hide_entity: true
   trigger:
   - platform: state
-    entity_id: sensor.motion_vardagsrum
-    from: 'True'
-    to: 'False'
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    from: 'on'
+    to: 'off'
     for:
-      minutes: 20
+      minutes: 10
   condition:
   - condition: time
     after: '06:00:00'
@@ -90,18 +85,22 @@
   hide_entity: true
   trigger:
   - platform: state
-    entity_id: sensor.main_door_sensor
-    from: 'False'
-    to: 'True'
+    entity_id: binary_sensor.openclose_5
+    from: 'off'
+    to: 'on'
   condition:
     condition: and
     conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        below: 2.0
       - condition: state
         entity_id: group.all_lights
         state: 'off'
       - condition: state
-        entity_id: sensor.motion_vardagsrum
-        state: 'False'
+        entity_id: binary_sensor.tradfri_motion_sensor_
+        state: 'off'
         for:
           hours: 1
   action:
@@ -115,11 +114,11 @@
   hide_entity: true
   trigger:
   - platform: state
-    entity_id: sensor.motion_vardagsrum
-    from: 'True'
-    to: 'False'
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    from: 'on'
+    to: 'off'
     for:
-      minutes: 60
+      minutes: 10
   condition:
   - condition: time
     after: '00:00:01'
